@@ -1,0 +1,15 @@
+services:
+  script:
+    build:
+      context: .
+      dockerfile: Dockerfile.compose-example.yaml
+    depends_on:
+      - redis
+    # Если хочется видеть вывод прямо в логах compose (по умолчанию так и будет)
+    tty: false
+
+  redis:
+    image: redis:alpine
+    # Порт пробрасывать не обязательно, но удобно для отладки с хоста
+    ports:
+      - "6379:6379"
